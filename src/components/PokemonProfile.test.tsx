@@ -50,4 +50,17 @@ describe("Pokedex Component Test", () => {
     );
     expect(await screen.findByAltText("bulbasaur", {}, { timeout: 1000 }));
   });
+  it("Check Error Message", async () => {
+    render(
+      <PokemonProfile
+        pokeData={{
+          name: "Bulbasaur",
+          url: "https://pokeapi.co/api/v2/pokemon/1/14526",
+        }}
+      />
+    );
+    expect(
+      await screen.findAllByText("Error Loading Data...", {}, { timeout: 1000 })
+    );
+  });
 });

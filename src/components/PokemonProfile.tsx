@@ -33,10 +33,10 @@ const PokemonProfile = ({ pokeData }: PokeProfile): JSX.Element => {
 
   return (
     <div className="profile-container">
-      {profileData && (
-        <div className="profile-screen">
-          {isError && <div>Error Loading Data...</div>}
-          {isLoading && !isError && <div className="img-load">Loading...</div>}
+      <div className="profile-screen">
+        {isError && <div>Error Loading Data...</div>}
+        {isLoading && !isError && <div className="img-load">Loading...</div>}
+        {profileData && (
           <div
             className={
               !isError && isLoading
@@ -71,8 +71,8 @@ const PokemonProfile = ({ pokeData }: PokeProfile): JSX.Element => {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
