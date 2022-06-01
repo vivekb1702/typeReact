@@ -34,13 +34,12 @@ describe("Pokedex Component Test", () => {
   it("Check Pokemon profile Change", async () => {
     await waitFor(() => expect(screen.getByText(/Name/i)).toBeInTheDocument());
     const button = screen.getByText("Right");
-    const name = screen.getByText(/Name:/i).textContent;
-    console.log(name);
+    const name: string = screen.getByText(/Name:/i).textContent!;
     act(() => {
       userEvent.click(button);
     });
     await waitFor(() =>
-      expect(screen.getByText(/Name/i)).not.toHaveTextContent("Name: Bulbasaur")
+      expect(screen.getByText(/Name/i)).not.toHaveTextContent(name)
     );
   });
 });
