@@ -27,6 +27,7 @@ describe("Pokedex Component Test", () => {
     );
     expect(await screen.findByText("Name: Bulbasaur", {}, { timeout: 1000 }));
   });
+
   it("Check Pokemon Image Render", async () => {
     render(
       <PokemonProfile
@@ -50,7 +51,8 @@ describe("Pokedex Component Test", () => {
     );
     expect(await screen.findByAltText("bulbasaur", {}, { timeout: 1000 }));
   });
-  it("Check Error Message", async () => {
+
+  it("Check Error Message on Api Failure", async () => {
     render(
       <PokemonProfile
         pokeData={{
