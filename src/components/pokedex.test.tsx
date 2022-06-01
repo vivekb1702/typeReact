@@ -35,11 +35,12 @@ describe("Pokedex Component Test", () => {
     await waitFor(() => expect(screen.getByText(/Name/i)).toBeInTheDocument());
     const button = screen.getByText("Right");
     const name = screen.getByText(/Name:/i).textContent;
+    console.log(name);
     act(() => {
       userEvent.click(button);
     });
-    //how to wait here for the text to change
-    const changedName = screen.getByText(/Name:/i).textContent;
-    console.log(changedName);
+    await waitFor(() =>
+      expect(screen.getByText(/Name/i)).not.toHaveTextContent("Name: Bulbasaur")
+    );
   });
 });
