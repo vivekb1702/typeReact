@@ -1,4 +1,4 @@
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import { PokeMonObj } from "../interfaces/interface";
 import PokemonProfile from "./PokemonProfile";
 import "./Pokedex.css";
@@ -8,7 +8,6 @@ type buttonDirection = "Left" | "Right";
 const Pokedex = (): JSX.Element => {
   const [pokeData, setPokeData] = useState<PokeMonObj[]>([]);
   const [currentPokemon, setCurrentPokemon] = useState<number>(0);
-  const [isPending, startTransition] = useTransition();
 
   const getPokemonData = async () => {
     try {
