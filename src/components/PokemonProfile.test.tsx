@@ -1,7 +1,5 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import PokemonProfile from "./PokemonProfile";
-import { act } from "react-dom/test-utils";
-import userEvent from "@testing-library/user-event";
 
 let container: HTMLDivElement;
 
@@ -25,7 +23,9 @@ describe("Pokedex Component Test", () => {
         }}
       />
     );
-    expect(await screen.findByText("Name: Bulbasaur", {}, { timeout: 1000 }));
+    expect(
+      await screen.findByText(/Name:/i, {}, { timeout: 1000 })
+    ).toHaveTextContent("Name: Bulbasaur");
   });
 
   it("Check Pokemon Image Render", async () => {
@@ -37,7 +37,9 @@ describe("Pokedex Component Test", () => {
         }}
       />
     );
-    expect(await screen.findByRole("img", {}, { timeout: 1000 }));
+    expect(
+      await screen.findByRole("img", {}, { timeout: 1000 })
+    ).toBeInTheDocument();
   });
 
   it("Check Pokemon Image alt text", async () => {
@@ -49,7 +51,9 @@ describe("Pokedex Component Test", () => {
         }}
       />
     );
-    expect(await screen.findByAltText("bulbasaur", {}, { timeout: 1000 }));
+    expect(
+      await screen.findByRole("img", {}, { timeout: 2000 })
+    ).toHaveAccessibleName("bulbasaur");
   });
 
   it("Check Error Message on Api Failure", async () => {
@@ -62,7 +66,7 @@ describe("Pokedex Component Test", () => {
       />
     );
     expect(
-      await screen.findAllByText("Error Loading Data...", {}, { timeout: 1000 })
-    );
+      await screen.findByText(/Error/i, {}, { timeout: 1000 })
+    ).toHaveTextContent("Error Loading Data...");
   });
 });
