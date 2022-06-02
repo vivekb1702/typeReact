@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Profile, PokeMonObj } from "../interfaces/interface";
 import "./PokemonProfile.css";
 
@@ -37,7 +37,7 @@ const PokemonProfile = ({ pokeData }: PokeProfile): JSX.Element => {
         {isError && (
           <div className="poke-error-load">Error Loading Data...</div>
         )}
-        {isLoading && !isError && <div className="img-load">Loading...</div>}
+        {isLoading && !isError && <Loading delayMs={200}>Loading ...</Loading>}
         {profileData && (
           <div
             className={
@@ -77,6 +77,23 @@ const PokemonProfile = ({ pokeData }: PokeProfile): JSX.Element => {
       </div>
     </div>
   );
+};
+
+type LoadingProp = {
+  children: React.ReactNode;
+  delayMs?: number;
+};
+
+const Loading = ({ children, delayMs }: LoadingProp): JSX.Element => {
+  const [isShowing, setIsShowing] = useState(false);
+  useEffect(() => {
+    if (!delayMs && delayMs !== 0) {
+      return;
+    }
+    const id = setTimeout(() => setIsShowing(true), delayMs);
+    return () => clearTimeout(id);
+  }, [delayMs]);
+  return <> {isShowing && <div>{children}</div>}</>;
 };
 
 export default PokemonProfile;
