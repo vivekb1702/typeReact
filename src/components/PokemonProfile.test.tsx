@@ -13,7 +13,7 @@ afterEach(() => {
   container.remove();
 });
 
-describe("Pokedex Component Test", () => {
+describe("Pokemon Profile Component Test", () => {
   it("Check PokeMon Name is Bulbasaur", async () => {
     render(
       <PokemonProfile
@@ -23,6 +23,7 @@ describe("Pokedex Component Test", () => {
         }}
       />
     );
+
     expect(
       await screen.findByText(/Name:/i, {}, { timeout: 1000 })
     ).toHaveTextContent("Name: Bulbasaur");
@@ -37,6 +38,7 @@ describe("Pokedex Component Test", () => {
         }}
       />
     );
+
     expect(
       await screen.findByRole("img", {}, { timeout: 1000 })
     ).toBeInTheDocument();
@@ -51,6 +53,7 @@ describe("Pokedex Component Test", () => {
         }}
       />
     );
+
     expect(
       await screen.findByRole("img", {}, { timeout: 2000 })
     ).toHaveAccessibleName("bulbasaur");
@@ -65,8 +68,9 @@ describe("Pokedex Component Test", () => {
         }}
       />
     );
+
     expect(
-      await screen.findByText(/Error/i, {}, { timeout: 1000 })
+      await screen.findByText(/Error/i, {}, { timeout: 2000 })
     ).toHaveTextContent("Error Loading Data...");
   });
 });

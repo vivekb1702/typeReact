@@ -28,6 +28,7 @@ const Pokedex = (): JSX.Element => {
         if (currentPokemon !== 0) {
           setCurrentPokemon((current) => {
             localStorage.setItem("currentPoke", `${current - 1}`);
+
             return current - 1;
           });
         }

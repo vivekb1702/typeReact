@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Profile, PokeMonObj } from "../interfaces/interface";
+import Loading from "./Loader";
 import "./PokemonProfile.css";
 
 type PokeProfile = {
@@ -77,23 +78,6 @@ const PokemonProfile = ({ pokeData }: PokeProfile): JSX.Element => {
       </div>
     </div>
   );
-};
-
-type LoadingProp = {
-  children: React.ReactNode;
-  delayMs?: number;
-};
-
-const Loading = ({ children, delayMs }: LoadingProp): JSX.Element => {
-  const [isShowing, setIsShowing] = useState(false);
-  useEffect(() => {
-    if (!delayMs && delayMs !== 0) {
-      return;
-    }
-    const id = setTimeout(() => setIsShowing(true), delayMs);
-    return () => clearTimeout(id);
-  }, [delayMs]);
-  return <> {isShowing && <div>{children}</div>}</>;
 };
 
 export default PokemonProfile;

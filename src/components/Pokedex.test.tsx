@@ -17,7 +17,7 @@ afterEach(() => {
 describe("Pokedex Component Test", () => {
   it("Check Left button render", async () => {
     render(<Pokedex />);
-    //  await waitFor(() => expect(screen.getByText("Left")).toBeInTheDocument());
+
     expect(
       await screen.findByText("Left", {}, { timeout: 1000 })
     ).toHaveTextContent("Left");
@@ -25,7 +25,7 @@ describe("Pokedex Component Test", () => {
 
   it("Check Right button render", async () => {
     render(<Pokedex />);
-    //await waitFor(() => expect(screen.getByText("Right")).toBeInTheDocument());
+
     expect(
       await screen.findByText("Right", {}, { timeout: 1000 })
     ).toHaveTextContent("Right");
@@ -33,6 +33,7 @@ describe("Pokedex Component Test", () => {
 
   it("Check Pokemon Image render", async () => {
     render(<Pokedex />);
+
     expect(
       await screen.findByRole("img", {}, { timeout: 1000 })
     ).toBeInTheDocument();
@@ -40,6 +41,7 @@ describe("Pokedex Component Test", () => {
 
   it("Check Pokemon Height Stat render", async () => {
     render(<Pokedex />);
+
     expect(
       await screen.findByText(/Height/i, {}, { timeout: 1000 })
     ).toHaveTextContent(/Height:/i);
@@ -51,6 +53,7 @@ describe("Pokedex Component Test", () => {
     const button: HTMLButtonElement = screen.getByText("Right");
     const name: string = screen.getByText(/Name:/i).textContent!;
     userEvent.click(button);
+
     await waitFor(() =>
       expect(screen.getByText(/Name/i)).not.toHaveTextContent(name)
     );
