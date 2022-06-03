@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getPokemonProfile } from "../../Api/Pokemon";
 import { Profile, PokeMonObj } from "../../interfaces/interface";
 import Loading from "../Loader/Loader";
 import "./PokemonProfile.css";
@@ -21,10 +22,7 @@ const PokemonProfile = ({ pokeData }: PokeProfile): JSX.Element => {
     try {
       setIsLoading(true);
       setIsError(false);
-      const response = await fetch(pokeData.url, {
-        method: "GET",
-      });
-      const data = await response.json();
+      const data = await getPokemonProfile(pokeData);
       setProfileData(data);
     } catch (error) {
       setIsLoading(false);
