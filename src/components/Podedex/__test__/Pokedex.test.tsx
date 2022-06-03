@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import Pokedex from "./Pokedex";
+import Pokedex from "../Pokedex";
 import userEvent from "@testing-library/user-event";
 
 let container: HTMLDivElement;
@@ -47,7 +47,7 @@ describe("Pokedex Component Test", () => {
     ).toHaveTextContent(/Height:/i);
   });
 
-  it("Check Pokemon profile Change", async () => {
+  it("Check Pokemon profile change during right button click", async () => {
     render(<Pokedex />);
     await screen.findByText(/Name/i, {}, { timeout: 1000 });
     const button: HTMLButtonElement = screen.getByText("Right");
@@ -56,6 +56,22 @@ describe("Pokedex Component Test", () => {
 
     await waitFor(() =>
       expect(screen.getByText(/Name/i)).not.toHaveTextContent(name)
+    );
+  });
+
+  it("Check if previous profile is displayed during left button click", async () => {
+    render(<Pokedex />);
+    await screen.findByText(/Name/i, {}, { timeout: 1000 });
+    const rightButton: HTMLButtonElement = screen.getByText("Right");
+    const leftButton: HTMLButtonElement = screen.getByText("Left");
+    const name: string = screen.getByText(/Name:/i).textContent!;
+    userEvent.click(rightButton);
+    await waitFor(() =>
+      expect(screen.getByText(/Name/i)).not.toHaveTextContent(name)
+    );
+    userEvent.click(leftButton);
+    await waitFor(() =>
+      expect(screen.getByText(/Name/i)).toHaveTextContent(name)
     );
   });
 });

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Profile, PokeMonObj } from "../interfaces/interface";
-import Loading from "./Loader";
+import { Profile, PokeMonObj } from "../../interfaces/interface";
+import Loading from "../Loader/Loader";
 import "./PokemonProfile.css";
 
 type PokeProfile = {
@@ -61,16 +61,20 @@ const PokemonProfile = ({ pokeData }: PokeProfile): JSX.Element => {
             </div>
             <div className="profile-details-container">
               <div className="profile-details">
-                <div>
+                <div data-testid="profile-stat-name">
                   {"Name: " +
                     profileData.name.charAt(0).toUpperCase() +
                     profileData.name.slice(1)}
                 </div>
-                <div>{"Weight: " + profileData.weight}</div>
+                <div data-testid="profile-stat-weight">
+                  {"Weight: " + profileData.weight}
+                </div>
               </div>
               <br />
               <div className="profile-details">
-                <div>{"Height: " + profileData.height}</div>
+                <div data-testid="profile-stat-height">
+                  {"Height: " + profileData.height}
+                </div>
               </div>
             </div>
           </div>

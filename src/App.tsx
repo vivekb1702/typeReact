@@ -1,6 +1,6 @@
-import React from 'react';
-import Pokedex from './components/Pokedex';
-import './App.css';
+import React from "react";
+import Pokedex from "./components/Podedex/Pokedex";
+import "./App.css";
 
 const App: React.FC = () => {
   return (
@@ -8,6 +8,6 @@ const App: React.FC = () => {
       <Pokedex />
     </div>
   );
-}
+};
 
 export default App;

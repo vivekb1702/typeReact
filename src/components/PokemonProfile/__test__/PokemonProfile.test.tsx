@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PokemonProfile from "./PokemonProfile";
+import PokemonProfile from "../PokemonProfile";
 
 let container: HTMLDivElement;
 
@@ -70,7 +70,22 @@ describe("Pokemon Profile Component Test", () => {
     );
 
     expect(
-      await screen.findByText(/Error/i, {}, { timeout: 2000 })
+      await screen.findByText(/Error/i, {}, { timeout: 4000 })
     ).toHaveTextContent("Error Loading Data...");
+  });
+
+  it("Check Pokemon Profile all stats are displayed", async () => {
+    render(
+      <PokemonProfile
+        pokeData={{
+          name: "Bulbasaur",
+          url: "https://pokeapi.co/api/v2/pokemon/1/",
+        }}
+      />
+    );
+
+    expect(
+      await screen.findAllByTestId(/profile-stat/i, {}, { timeout: 1000 })
+    ).toHaveLength(3);
   });
 });

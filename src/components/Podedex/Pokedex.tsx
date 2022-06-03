@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { PokeMonObj } from "../interfaces/interface";
-import PokemonProfile from "./PokemonProfile";
+import { PokeMonObj } from "../../interfaces/interface";
+import PokemonProfile from "../PokemonProfile/PokemonProfile";
 import "./Pokedex.css";
 
 type buttonDirection = "Left" | "Right";
